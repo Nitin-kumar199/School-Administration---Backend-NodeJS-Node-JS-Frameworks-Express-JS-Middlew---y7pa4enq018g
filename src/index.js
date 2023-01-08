@@ -87,21 +87,18 @@ app.put("/api/student/:id", (req, res) =>{
 
 app.delete("/api/student/:id", (req, res)=>{
     let id = req.params.id
-    studentArray.findById(id, (err, student)=>{
-        if(err){
-            res.sendStatus(400);
-        }
-        if(!student){
+    if(isNaN(id)){
+        res.sendStatus(400);
+    }else{
+        id = parseInt(id);
+        let data = studentArray.find((e)=>{return (e.id === id)})
+        if(data === undefined || data === {}){
             res.sendStatus(404);
         }else{
-            student.delete((err)=>{
-                if(err){
-                    res.sendStatus(400);
-                }
-                res.sendStatus(200);
-            })
+            studentArray[id].delete;
+            res.sendStatus(200);
         }
-    })
+    }
 })
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
