@@ -95,7 +95,7 @@ app.delete("/api/student/:id", (req, res)=>{
         if(data === undefined || data === {}){
             res.sendStatus(404);
         }else{
-            studentArray[id].delete;
+            studentArray.splice(id,1);
             res.sendStatus(200);
         }
     }
